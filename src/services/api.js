@@ -36,6 +36,8 @@ const updateTodo = async (id, updated) => {
 // delete item from localstorage
 const deleteTodo = async (id) => {
   const todos = await getTodos();
+  if (!window.confirm("Delete this todo?")) return;
+  
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify(todos.filter((t) => t.id !== Number(id)))

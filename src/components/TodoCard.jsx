@@ -1,4 +1,5 @@
 import React from "react";
+import api from "../services/api";
 
 const TodoCard = ({ todo }) => {
   return (
@@ -26,7 +27,7 @@ const TodoCard = ({ todo }) => {
       <div className="buttons flex gap-5">
         <button class="">Edit</button>
 
-        <button class="">Delete</button>
+        <button class="" onClick={() => {api.deleteTodo(todo.id)}}>Delete</button>
       </div>
     </div>
   );

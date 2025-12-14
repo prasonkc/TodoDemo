@@ -2,24 +2,24 @@ import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
 import TodoCard from '../components/TodoCard.jsx';
 import { useState } from 'react';
+import api from '../services/api.js';
 
- const todos = () => {
+ const Todos = () => {
   const [todos, setTodos] = useState([]);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const loadTodos = async () => {
    setTodos([
-        { id: 1, title: "Buy groceries", description: "Milk, Bread, Eggs" },
-        { id: 2, title: "Walk the dog", description: "Evening walk in the park" },
-        { id: 3, title: "Read a book", description: "Finish reading 'The Great Gatsby'" }
+      ...await api.getTodos()
     ]);
   };
 
   useEffect(() => {
     loadTodos();
-  }, []);
+    setLoading(false);
+  }, [todos]);
 
-  // if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Loading...</p>;
   return (
     <div>
         <h1 className='text-center text-2xl font-extrabold m-5'>TODO LIST</h1>
@@ -36,4 +36,4 @@ import { useState } from 'react';
   )
 }
 
-export default todos
+export default Todos

@@ -1,11 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 const CreateTodos = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("pending");
   const [image, setImage] = useState("");
+  const navigate = useNavigate();
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -16,8 +19,11 @@ const CreateTodos = () => {
     reader.readAsDataURL(file);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    await api.createTodo({ title, description, status, image });
+    navigate("/todos");
   };
 
   return (
@@ -38,19 +44,23 @@ const CreateTodos = () => {
           className="border p-2 w-full block mx-auto my-3 focus:border-green-500 ring-green-500 rounded-2xl"
         />
 
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className="border p-2 w-full"
-        >
-          <option value="pending">Pending</option>
-          <option value="completed">Completed</option>
-        </select>
+        <div className="w-[40%] mx-auto text-center">
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="border p-2"
+          >
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
 
         <div className="flex flex-col items-center justify-center gap-3">
           <div className="bg-gray-200 p-5 rounded-lg">
             <input type="file" accept="image/*" onChange={handleImage} />
-            {image && <img src={image} className="w-24 h-24 object-cover mx-auto" />}
+            {image && (
+              <img src={image} className="w-24 h-24 object-cover mx-auto" />
+            )}
           </div>
 
           <button
