@@ -25,7 +25,7 @@ A simple React web application that allows users to create, view, edit, delete, 
 1. Clone the repository
 
 ```bash
-git clone <your-github-repo-url>
+git clone https://github.com/prasonkc/TodoDemo.git
 cd react-todo-app
 ```
 
