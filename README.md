@@ -1,6 +1,6 @@
 # A ToDoList
 
-A simple React web application that allows users to create, view, edit, delete, and manage Todos with image uploads. This project uses React, React Router, and localStorage as a mock backend. It is designed to meet the given intern assignment requirements.
+A simple React web application that allows users to create, view, edit, delete, and manage Todos with image uploads. This project uses React, React Router, and localStorage as a mock backend.
 
 # Features
 
