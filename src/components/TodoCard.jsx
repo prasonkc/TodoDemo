@@ -1,15 +1,15 @@
 import React from "react";
 
-const TodoCard = () => {
+const TodoCard = ({todo}) => {
   return (
-    <div class="w-full rounded-xl bg-gray-300 backdrop-blur-lg border border-black shadow-xl flex justify-between p-5">
+    <div class="w-[70%] mx-auto rounded-xl bg-gray-600 backdrop-blur-lg border border-black shadow-xl flex justify-between p-5 m-5">
       <div className="contents flex flex-col">
         <h3 class="text-xl font-semibold text-black">
-          {/* {todo.title} */} TItle
+          {todo.title}
         </h3>
 
         <p class="mt-2 text-sm text-black">
-          {/* {todo.description} */} Description
+          {todo.description}
         </p>
       </div>
 
