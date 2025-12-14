@@ -9,15 +9,17 @@ import api from '../services/api.js';
   const [loading, setLoading] = useState(true);
 
   const loadTodos = async () => {
-   setTodos([
-      ...await api.getTodos()
-    ]);
+    const fetchedTodos = await api.getTodos();
+    setTodos(fetchedTodos);
   };
 
   useEffect(() => {
-    loadTodos();
-    setLoading(false);
-  }, [todos]);
+    const fetchTodos = async () => {
+      await loadTodos();
+      setLoading(false);
+    };
+    fetchTodos();
+  }, []);
 
   if (loading) return <p>Loading...</p>;
   return (
@@ -26,7 +28,7 @@ import api from '../services/api.js';
 
         {/* Render todo cards */}
         {todos.map(todo => (
-            <TodoCard key={todo.id} todo={todo} />
+            <TodoCard key={todo.id} todo={todo} onDelete={loadTodos} />
         ))}
 
         <div className='text-center my-10'>
