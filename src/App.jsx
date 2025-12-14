@@ -1,12 +1,11 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import './App.css'
-
-function App() {
-
+export default function App() {
   return (
-    <>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/todos" />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
