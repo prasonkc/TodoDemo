@@ -4,9 +4,14 @@ import api from "../services/api";
 
 const TodoCard = ({ todo, onDelete }) => {
   const handleDelete = async () => {
-    await api.deleteTodo(todo.id);
-    if (onDelete) {
-      onDelete();
+    try {
+      await api.deleteTodo(todo.id);
+      if (onDelete) {
+        onDelete();
+      }
+    } catch (error) {
+      console.error('Error deleting todo:', error);
+      alert('Failed to delete todo. Please try again.');
     }
   };
 
